@@ -1,6 +1,6 @@
 import 'package:firebase_example/data/repository/login_repository.dart';
-import 'package:firebase_example/ui/screen/chat_room/chat_room_screen.dart';
-import 'package:firebase_example/ui/view_model/chat_room_view_model.dart';
+import 'package:firebase_example/ui/screen/chat/chat_screen.dart';
+import 'package:firebase_example/ui/view_model/chat_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,7 +34,7 @@ class LoginViewModel extends ChangeNotifier {
           return Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
             builder: (context) {
               return ChangeNotifierProvider(
-                create: (_) => ChatRoomViewModel(),
+                create: (_) => ChatViewModel(),
                 child: ChatRoomScreen(currentUser: verify),
               );
             },
