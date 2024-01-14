@@ -6,7 +6,9 @@ part 'chat_model.g.dart';
 
 @freezed
 class Chat with _$Chat {
-  factory Chat({
+  factory Chat(
+    // data 통신 안하기 위한 옵션
+    @JsonKey(includeToJson: true, includeFromJson: true) bool isMyMessage, {
     required String sender,
     required String message,
     required int timeStamp,

@@ -20,9 +20,7 @@ User _$UserFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$User {
-  @JsonKey(name: "id")
   String get userId => throw _privateConstructorUsedError;
-  @JsonKey(name: "password")
   String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,9 +33,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call(
-      {@JsonKey(name: "id") String userId,
-      @JsonKey(name: "password") String password});
+  $Res call({String userId, String password});
 }
 
 /// @nodoc
@@ -76,9 +72,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: "id") String userId,
-      @JsonKey(name: "password") String password});
+  $Res call({String userId, String password});
 }
 
 /// @nodoc
@@ -110,18 +104,14 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  _$UserImpl(
-      {@JsonKey(name: "id") required this.userId,
-      @JsonKey(name: "password") required this.password});
+  _$UserImpl({required this.userId, required this.password});
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
-  @JsonKey(name: "id")
   final String userId;
   @override
-  @JsonKey(name: "password")
   final String password;
 
   @override
@@ -159,16 +149,14 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@JsonKey(name: "id") required final String userId,
-      @JsonKey(name: "password") required final String password}) = _$UserImpl;
+      {required final String userId,
+      required final String password}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
-  @JsonKey(name: "id")
   String get userId;
   @override
-  @JsonKey(name: "password")
   String get password;
   @override
   @JsonKey(ignore: true)

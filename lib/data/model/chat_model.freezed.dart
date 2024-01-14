@@ -20,6 +20,9 @@ Chat _$ChatFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Chat {
+// data 통신 안하기 위한 옵션
+  @JsonKey(includeToJson: true, includeFromJson: true)
+  bool get isMyMessage => throw _privateConstructorUsedError;
   String get sender => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   int get timeStamp => throw _privateConstructorUsedError;
@@ -34,7 +37,11 @@ abstract class $ChatCopyWith<$Res> {
   factory $ChatCopyWith(Chat value, $Res Function(Chat) then) =
       _$ChatCopyWithImpl<$Res, Chat>;
   @useResult
-  $Res call({String sender, String message, int timeStamp});
+  $Res call(
+      {@JsonKey(includeToJson: true, includeFromJson: true) bool isMyMessage,
+      String sender,
+      String message,
+      int timeStamp});
 }
 
 /// @nodoc
@@ -50,11 +57,16 @@ class _$ChatCopyWithImpl<$Res, $Val extends Chat>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isMyMessage = null,
     Object? sender = null,
     Object? message = null,
     Object? timeStamp = null,
   }) {
     return _then(_value.copyWith(
+      isMyMessage: null == isMyMessage
+          ? _value.isMyMessage
+          : isMyMessage // ignore: cast_nullable_to_non_nullable
+              as bool,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
@@ -78,7 +90,11 @@ abstract class _$$ChatImplCopyWith<$Res> implements $ChatCopyWith<$Res> {
       __$$ChatImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String sender, String message, int timeStamp});
+  $Res call(
+      {@JsonKey(includeToJson: true, includeFromJson: true) bool isMyMessage,
+      String sender,
+      String message,
+      int timeStamp});
 }
 
 /// @nodoc
@@ -91,11 +107,16 @@ class __$$ChatImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isMyMessage = null,
     Object? sender = null,
     Object? message = null,
     Object? timeStamp = null,
   }) {
     return _then(_$ChatImpl(
+      null == isMyMessage
+          ? _value.isMyMessage
+          : isMyMessage // ignore: cast_nullable_to_non_nullable
+              as bool,
       sender: null == sender
           ? _value.sender
           : sender // ignore: cast_nullable_to_non_nullable
@@ -116,11 +137,18 @@ class __$$ChatImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChatImpl implements _Chat {
   _$ChatImpl(
-      {required this.sender, required this.message, required this.timeStamp});
+      @JsonKey(includeToJson: true, includeFromJson: true) this.isMyMessage,
+      {required this.sender,
+      required this.message,
+      required this.timeStamp});
 
   factory _$ChatImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatImplFromJson(json);
 
+// data 통신 안하기 위한 옵션
+  @override
+  @JsonKey(includeToJson: true, includeFromJson: true)
+  final bool isMyMessage;
   @override
   final String sender;
   @override
@@ -130,7 +158,7 @@ class _$ChatImpl implements _Chat {
 
   @override
   String toString() {
-    return 'Chat(sender: $sender, message: $message, timeStamp: $timeStamp)';
+    return 'Chat(isMyMessage: $isMyMessage, sender: $sender, message: $message, timeStamp: $timeStamp)';
   }
 
   @override
@@ -138,6 +166,8 @@ class _$ChatImpl implements _Chat {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatImpl &&
+            (identical(other.isMyMessage, isMyMessage) ||
+                other.isMyMessage == isMyMessage) &&
             (identical(other.sender, sender) || other.sender == sender) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.timeStamp, timeStamp) ||
@@ -146,7 +176,8 @@ class _$ChatImpl implements _Chat {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, sender, message, timeStamp);
+  int get hashCode =>
+      Object.hash(runtimeType, isMyMessage, sender, message, timeStamp);
 
   @JsonKey(ignore: true)
   @override
@@ -164,12 +195,17 @@ class _$ChatImpl implements _Chat {
 
 abstract class _Chat implements Chat {
   factory _Chat(
+      @JsonKey(includeToJson: true, includeFromJson: true)
+      final bool isMyMessage,
       {required final String sender,
       required final String message,
       required final int timeStamp}) = _$ChatImpl;
 
   factory _Chat.fromJson(Map<String, dynamic> json) = _$ChatImpl.fromJson;
 
+  @override // data 통신 안하기 위한 옵션
+  @JsonKey(includeToJson: true, includeFromJson: true)
+  bool get isMyMessage;
   @override
   String get sender;
   @override
