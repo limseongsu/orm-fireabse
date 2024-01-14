@@ -1,5 +1,5 @@
 import 'package:firebase_example/firebase_options.dart';
-import 'package:firebase_example/ui/view_model/login_controller.dart';
+import 'package:firebase_example/ui/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'ui/screen/login/login_screen.dart';
