@@ -1,4 +1,4 @@
-import 'package:firebase_example/ui/view_model/login_controller.dart';
+import 'package:firebase_example/ui/view_model/login_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 100),
             _makeTextFieldWidget(viewModel.idText, viewModel.idController),
             const SizedBox(height: 50),
-            _makeTextFieldWidget(viewModel.passwordText, viewModel.pwController),
+            _makeTextFieldWidget(viewModel.passwordText, viewModel.pwController, isPw: true),
             const Spacer(),
             _loginButtonWidget(viewModel, context),
           ],
@@ -35,7 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
 
   Text _screenTitleWidget(String title) {
     return Text(title,
@@ -46,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
         ));
   }
 
-  Column _makeTextFieldWidget(String title, TextEditingController controller) {
+  Column _makeTextFieldWidget(String title, TextEditingController controller, {bool? isPw}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +62,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(8)),
             height: 50,
             child: TextField(
+              // hide input text option
+              obscureText: isPw == true ? true : false,
               controller: controller,
               style: const TextStyle(color: Colors.white, fontSize: 20),
               cursorColor: Colors.white,
