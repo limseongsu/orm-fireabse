@@ -15,16 +15,20 @@ class ChatRoomScreen extends StatefulWidget {
 }
 
 class _ChatRoomScreenState extends State<ChatRoomScreen> {
-  ChatViewModel viewModel = ChatViewModel();
-
   @override
   void initState() {
     //
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      viewModel = Provider.of<ChatViewModel>(context, listen: false);
+      final viewModel = Provider.of<ChatViewModel>(context, listen: false);
       viewModel.getLastMessageEvent().listen((event) {
         viewModel.updateLastMessage(snapshot: event);
       });
+      /* or 현재 사용 하는 방법
+       Future.microtask()) {
+       cotnext.read<>
+       }
+     */
+
       await viewModel.initChatRoom(currentUser: widget.currentUser);
     });
     super.initState();
@@ -32,7 +36,7 @@ class _ChatRoomScreenState extends State<ChatRoomScreen> {
 
   @override
   Widget build(BuildContext context) {
-    viewModel = context.watch<ChatViewModel>();
+    final viewModel = context.watch<ChatViewModel>();
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(0.2),
       appBar: AppBar(

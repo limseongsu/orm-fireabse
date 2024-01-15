@@ -14,7 +14,7 @@ class ChatViewModel extends ChangeNotifier {
   ScrollController scrollController = ScrollController();
   String receiverName = 'second';
 
-  Future initChatRoom({required User currentUser}) async {
+  Future<void> initChatRoom({required User currentUser}) async {
     isLoading = true;
     // fakeData 여서 간단하게 구현 -> 실제 login 을 사용하면 해당 sender, receiver 정보를 다 만들어야함.
     if (currentUser.userId != 'first') {
@@ -49,7 +49,7 @@ class ChatViewModel extends ChangeNotifier {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getLastMessageEvent() {
     //streamBuilder 에 Event 전달
-    return _chatRepository.getLastMessageStream();
+    return _chatRepository.messageStream();
   }
 
   void updateLastMessage({required QuerySnapshot<Map<String, dynamic>> snapshot}) {
